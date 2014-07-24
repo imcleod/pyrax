@@ -5,15 +5,15 @@ Version:        @VERSION@
 Release:        @RELEASE@%{?dist}
 Summary:        Python language bindings for OpenStack Clouds
 
-License:        ASLv2
-URL:            https://github.com/rackerlabs/pyrax
-Source0:        %{name}-%{version}.tar.gz
+
+License:        ASL 2.0
+Source0:        http://imcleod.fedorapeople.org/src/pyrax/%{name}-%{version}.tar.gz
+URL:            https://github.com/rackspace/pyrax
 
 BuildArch:      noarch
 BuildRequires:  python-setuptools
 BuildRequires:  python-mock
 Requires:       python-novaclient >= 2.13.0
-Requires:       python-swiftclient >= 1.5.0
 Requires:       python-httplib2
 Requires:       python-keyring
 
@@ -25,16 +25,6 @@ cloudfiles contains the ability to publish your content on Rackspace's CDN
 network, even though CDN support is not part of OpenStack Swift. But if you
 don't use any of the CDN-related code, your app will work fine on any
 standard Swift deployment.
-
-
-%package rackspace
-Summary:        Bring in the bits that work with Rackspace's Cloud
-Requires:       pyrax
-Requires:       rackspace-novaclient
-
-%description rackspace
-The Rackspace Cloud has additional libraries that are required to access
-all the things.  This package just makes sure they are available for pyrax.
 
 %prep
 %setup -q
@@ -48,9 +38,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__python} setup.py install --root $RPM_BUILD_ROOT
 
 %files
+%doc README COPYING samples docs 
 %{python_sitelib}/*
-#%{_bindir}/
 
 %changelog
+* Thu Jul 24 2014 Ian McLeod <imcleod@redhat.com> - 1.9.0-1
+- Pull in upstream 1.9.0 release
+
 * Fri Sep 6 2013 Greg Swift <gregswift@gmail.com> - 1.5.0-1
 - Initial spec
