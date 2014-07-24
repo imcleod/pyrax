@@ -39,8 +39,8 @@ class sdist(_sdist):
         git_release = "%sgit%s" % (date, git_head)
 
         # Expand macros in pyrax.spec.in
-        spec_in = open('pyrax.spec.in', 'r')
-        spec = open('pyrax.spec', 'w')
+        spec_in = open('python-pyrax.spec.in', 'r')
+        spec = open('python-pyrax.spec', 'w')
         for line in spec_in.xreadlines():
             if "@VERSION@" in line:
                 line = line.replace("@VERSION@", version)
